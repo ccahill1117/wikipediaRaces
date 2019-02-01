@@ -1,27 +1,36 @@
-# WikipediaRaces
+# WikiRaces
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
-## Development server
+### What's a Wiki Race?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[well let me tell you....](https://en.wikipedia.org/wiki/Wikipedia:Wikirace)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Authors
+Christopher Cahill &&
+Ryan Leslie &&
+Quinn Miller
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### notes
 
-## Running unit tests
+here are some notes on
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<apiCallExamples>
+https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Bill%20Gates&format=json
 
-## Running end-to-end tests
+https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Bill%20Gates&format=jsonfm
+</apiCallExamples>
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```html
+<someOtherLinks>
+  https://en.wikipedia.org/w/api.php
+  https://www.mediawiki.org/wiki/API:Errors_and_warnings
+  https://en.wikipedia.org/wiki/Special:ApiSandbox#action=help&recursivesubmodules=1
+  https://www.mediawiki.org/wiki/API:Tutorial
+</someOtherLinks>
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```

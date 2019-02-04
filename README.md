@@ -34,5 +34,13 @@ https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Bill%20Gate
 </someOtherLinks>
 
 ```
+```html
+<rest API >
+https://en.wikipedia.org/api/rest_v1/
+
+http://listen.hatnote.com/
+```
+
+
 
 ![alt text](./src/assets/800px-Request_format.svg.png "Logo Title Text 1")

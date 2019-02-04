@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ApiTestCallService } from '../api-test-call.service';
 import { routing } from '../app.routing';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-api-test-call',
@@ -14,8 +15,17 @@ import { routing } from '../app.routing';
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
 
-
   constructor(private wikiApiCall: ApiTestCallService) { }
+
+  iframe = document.getElementById('iframe') as HTMLIFrameElement;
+
+
+  // iframeclick() {
+  //   document.getElementById("iframe").contentWindow.document.body.onclick = function() {
+  //     document.getElementById("iframe").contentWindow.location.reload();
+  //     console.log(contentWindow.location)
+  //   }
+  // }
 
   getArticle(query: string) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
@@ -24,7 +34,15 @@ export class ApiTestCallComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit() {
+
+    $(document).ready(function(){
+       $("#iframe").click(function(){
+         console.log('hi')
+       });
+   });
+
+
   }
 
 }

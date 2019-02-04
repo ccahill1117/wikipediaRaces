@@ -7,6 +7,7 @@ import { routing } from './app.routing';
 import { WikiComponent } from './wiki/wiki.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import * as $ from 'jquery';
 
 
 @NgModule({

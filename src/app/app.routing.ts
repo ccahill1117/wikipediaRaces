@@ -6,9 +6,9 @@ import { ModuleWithProviders }  from '@angular/core';
 
 const routes: Routes = [
   {
-      path: 'apiCall',
+      path: 'call',
       component: ApiTestCallComponent
-  }
+  },
 
 
 ];

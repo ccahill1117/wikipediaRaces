@@ -40,6 +40,10 @@ https://en.wikipedia.org/api/rest_v1/
 
 http://listen.hatnote.com/
 ```
+```html
+returns json object with .text property which contains HTML for page
+https://en.wikipedia.org/w/api.php?action=parse&pageid=3747
+```
 
 
 

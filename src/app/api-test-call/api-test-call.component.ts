@@ -18,7 +18,7 @@ import * as $ from 'jquery';
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
 
-@ViewChild('iframe') iframe: ElementRef;
+// @ViewChild('iframe') iframe: ElementRef;
 
   constructor(private wikiApiCall: ApiTestCallService) { }
 
@@ -31,16 +31,18 @@ export class ApiTestCallComponent implements OnInit {
       console.log(this.article);
       console.log(thing);
       let content = thing.text['*'];
-      $("#output").text(content);
-      let doc =  this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow;
-      doc.open();
-      doc.write(content);
-      doc.close()
+      $("#output").html(thing.text['*']);
+      // let doc =  this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow;
+      // doc.open();
+      // doc.write(content);
+      // doc.close()
+      $("a").click(function() {
+      alert($(this).attr("href"));
+    })
     });
   }
 
   ngOnInit() {
-
 
   }
 

@@ -45,6 +45,11 @@ returns json object with .text property which contains HTML for page
 https://en.wikipedia.org/w/api.php?action=parse&pageid=3747
 ```
 
+```HTML
+accessing iframe info
+https://javascript.info/cross-window-communication
+
+```
 
 
 ![alt text](./src/assets/800px-Request_format.svg.png "Logo Title Text 1")

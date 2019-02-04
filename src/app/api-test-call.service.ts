@@ -8,6 +8,7 @@ export class ApiTestCallService {
 
   getByPageId(pageId: string) {
     return this.http.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${pageId}&format=json`)
+    // return this.http.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&titles=Stack%20Overflow&format=json`)
   }
 
   constructor(private http: Http) { }

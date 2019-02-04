@@ -34,3 +34,5 @@ https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Bill%20Gate
 </someOtherLinks>
 
 ```
+
+![alt text](./src/assets/800px-Request_format.svg.png "Logo Title Text 1")

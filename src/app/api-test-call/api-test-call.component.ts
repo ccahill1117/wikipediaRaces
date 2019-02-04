@@ -20,7 +20,7 @@ export class ApiTestCallComponent implements OnInit {
   getArticle(query: string) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
-      console.log(query);
+      console.log(this.article);
     });
   }
 

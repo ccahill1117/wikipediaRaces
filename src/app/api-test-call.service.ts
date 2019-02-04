@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 export class ApiTestCallService {
 
   getByPageId(pageId: string) {
-    return this.http.get(`https://en.wikipedia.org/w/api.php?action=parse&pageid=${pageId}`)
+    return this.http.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${pageId}&format=json`)
   }
 
   constructor(private http: Http) { }

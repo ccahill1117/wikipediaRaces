@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,37 +10,36 @@ import * as $ from 'jquery';
   selector: 'app-api-test-call',
   templateUrl: './api-test-call.component.html',
   styleUrls: ['./api-test-call.component.css'],
-  providers: [ApiTestCallService]
+  providers: [ApiTestCallService],
+  moduleId: module.id,
+  // template: '<iframe #iframe></iframe>'
+
 })
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
 
+@ViewChild('iframe') iframe: ElementRef;
+
   constructor(private wikiApiCall: ApiTestCallService) { }
 
-  iframe = document.getElementById('iframe') as HTMLIFrameElement;
 
-
-  // iframeclick() {
-  //   document.getElementById("iframe").contentWindow.document.body.onclick = function() {
-  //     document.getElementById("iframe").contentWindow.location.reload();
-  //     console.log(contentWindow.location)
-  //   }
-  // }
 
   getArticle(query: string) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
+      let thing = response.json().parse;
       console.log(this.article);
+      console.log(thing);
+      let content = thing.text['*'];
+      $("#output").text(content);
+      let doc =  this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow;
+      doc.open();
+      doc.write(content);
+      doc.close()
     });
   }
 
-  public ngOnInit() {
-
-    $(document).ready(function(){
-       $("#iframe").click(function(){
-         console.log('hi')
-       });
-   });
+  ngOnInit() {
 
 
   }

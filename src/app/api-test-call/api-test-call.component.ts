@@ -26,8 +26,6 @@ export class ApiTestCallComponent implements OnInit {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
       let thing = response.json().parse;
-      console.log(this.article);
-      console.log(thing);
       let content = thing.text['*'];
       $("#output").empty();
       $("#output").html(thing.text['*']);
@@ -41,17 +39,12 @@ export class ApiTestCallComponent implements OnInit {
         let clickedURL = ($(this).attr("href"));
         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
         $(".checkDiv").text(clickedLink);
-        alert(clickedLink);
 
-        setTimeout(() => {
-                    console.log('hi');
-                    this.getArticle(clickedLink);
-                }, 1000);
+
+
+                // return clickedLink;
 
       })
-
-
-
 
     });
   }

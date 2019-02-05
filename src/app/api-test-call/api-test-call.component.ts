@@ -29,50 +29,55 @@ export class ApiTestCallComponent implements OnInit {
       $("a").click(function() {
         return false;
       })
-
-      $("a").click(function() {
+      let that = this;
+      $("a").click(function(event) {
+        event.preventDefault();
         let clickedURL = ($(this).attr("href"));
         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
         $(".checkDiv").text(clickedLink);
+        $("#inputThing").val(clickedLink);
+        that.getArticle(clickedLink);
       })
       $("a").dblclick(function() {
         let clickedURL = ($(this).attr("title"));
         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-        $("#inputThing").val(clickedLink);
-        // this.getArticle(clickedLink);
+
         return false;
       })
 
     });
   }
-
   constructor(private wikiApiCall: ApiTestCallService, private http: Http) {
-    $.get(`https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&list=random&rnlimit=1`).then(function(response) {
-      console.log('initial random', response);
-      let content = response.query.random[0].id;
-      $("#output").empty();
-      $("#output").text(response.query.random[0].id + ' ' + response.query.random[0].title);
-
-        $.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${content}&format=json`).then(function(response2) {
-          let thing = response2.parse;
-          console.log('get article', thing);
-          $("#output").html(thing.text['*']);
-
-          $("a").click(function() {
-            let clickedURL = ($(this).attr("title"));
-            let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-            $(".checkDiv").text(clickedLink);
-            return false
-          })
-          $("a").dblclick(function() {
-            let clickedURL = ($(this).attr("title"));
-            let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-            $("#inputThing").val(clickedLink);
-            // this.getArticle(clickedLink);
-            return false;
-          })
-        })
-    })
+    // $.get(`https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&list=random&rnlimit=1`).then(function(response) {
+    //   console.log('initial random', response);
+    //   let content = response.query.random[0].id;
+    //   $("#output").empty();
+    //   $("#output").text(response.query.random[0].id + ' ' + response.query.random[0].title);
+    //
+    //     $.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${content}&format=json`).then(function(response2) {
+    //       let thing = response2.parse;
+    //       console.log('get article', thing);
+    //       $("#output").html(thing.text['*']);
+    //       $("a").click(function(event) {
+    //         return false
+    //       })
+    //       let that = this;
+    //       $("a").click(function() {
+    //         event.preventDefault();
+    //
+    //         let clickedURL = ($(this).attr("title"));
+    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+    //         $(".checkDiv").text(clickedLink);
+    //
+    //       })
+    //       $("a").dblclick(function() {
+    //         let clickedURL = ($(this).attr("title"));
+    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+    //         $("#inputThing").val(clickedLink);
+    //         return false;
+    //       })
+    //     })
+    // })
 
 
   }

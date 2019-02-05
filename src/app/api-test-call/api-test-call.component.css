@@ -5,6 +5,9 @@ iframe {
 }
 
 #output {
-  /* pointer-events: none; */
 
+}
+
+#inputThing {
+  display: none;
 }

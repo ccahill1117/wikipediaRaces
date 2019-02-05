@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApiTestCallService } from '../api-test-call.service';
 import { routing } from '../app.routing';
 import * as $ from 'jquery';
+import * as dot from 'dot-wild';
 
 
 @Component({
@@ -47,52 +48,18 @@ export class ApiTestCallComponent implements OnInit {
 
     });
   }
+
   constructor(private wikiApiCall: ApiTestCallService, private http: Http) {
-    // $.get(`https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&list=random&rnlimit=1`).then(function(response) {
-    //   console.log('initial random', response);
-    //   let content = response.query.random[0].id;
-    //   $("#output").empty();
-    //   $("#output").text(response.query.random[0].id + ' ' + response.query.random[0].title);
-    //
-    //     $.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${content}&format=json`).then(function(response2) {
-    //       let thing = response2.parse;
-    //       console.log('get article', thing);
-    //       $("#output").html(thing.text['*']);
-    //       $("a").click(function(event) {
-    //         return false
-    //       })
-    //       let that = this;
-    //       $("a").click(function() {
-    //         event.preventDefault();
-    //
-    //         let clickedURL = ($(this).attr("title"));
-    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-    //         $(".checkDiv").text(clickedLink);
-    //
-    //       })
-    //       $("a").dblclick(function() {
-    //         let clickedURL = ($(this).attr("title"));
-    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-    //         $("#inputThing").val(clickedLink);
-    //         return false;
-    //       })
-    //     })
-    // })
+    $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
+      console.log(response);
+      const thing2 = dot.get(response, 'query.pages.*.title')
+      let thing = thing2[0];
+      console.log(thing)
+      $("#inputThing").val(thing);
 
-
+  })
   }
 
+    ngOnInit() {  }
 
-  ngOnChanges() {
 }
-
-  ngOnInit() {
-
-
-
-
-  }
-
-
-
-  }

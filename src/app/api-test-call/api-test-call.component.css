@@ -5,6 +5,6 @@ iframe {
 }
 
 #output {
-  pointer-events: auto;
-  cursor: default;
+  /* pointer-events: none; */
+
 }

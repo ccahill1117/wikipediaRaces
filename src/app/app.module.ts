@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -25,7 +26,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     ApiTestCallComponent,
-    WikiComponent
+    WikiComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

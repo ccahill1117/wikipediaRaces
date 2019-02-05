@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApiTestCallService } from '../api-test-call.service';
 import { routing } from '../app.routing';
 import * as $ from 'jquery';
+import * as dot from 'dot-wild';
 
 
 @Component({
@@ -38,12 +39,11 @@ export class ApiTestCallComponent implements OnInit {
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);
       })
-      $("a").dblclick(function() {
-        let clickedURL = ($(this).attr("title"));
-        let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-
-        return false;
-      })
+      // $("a").dblclick(function() {
+      //   let clickedURL = ($(this).attr("title"));
+      //   let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+      //   return false;
+      // })
 
     });
   }
@@ -87,9 +87,15 @@ export class ApiTestCallComponent implements OnInit {
 }
 
   ngOnInit() {
-
-
-
+    this.wikiApiCall.getRandomPage().subscribe(response => {
+      console.log(response.json())
+      const pageId = dot.get(response.json(), 'query.pages.*.title')[0]
+      this.getArticle(pageId);
+    });
+    // this.getArticle(this.wikiApiCall.getRandomPage)
+    // console.log(this.wikiApiCall.getRandomPage().subscribe(response => {
+    //   return response.query.random[0].id
+    // }))
 
   }
 

@@ -13,8 +13,7 @@ export class ApiTestCallService {
   }
 
   getRandomPage() {
-    return this.http.get(`https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&list=random&rnlimit=1`)
-
+    return this.http.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`)
   }
 
   getByPageIdNumber(pageId: string) {

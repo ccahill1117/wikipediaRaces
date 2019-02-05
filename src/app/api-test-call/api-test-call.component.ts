@@ -32,13 +32,15 @@ export class ApiTestCallComponent implements OnInit {
       console.log(thing);
       let content = thing.text['*'];
       $("#output").html(thing.text['*']);
-      // let doc =  this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow;
-      // doc.open();
-      // doc.write(content);
-      // doc.close()
-      $("a").click(function() {
-      alert($(this).attr("href"));
-    })
+
+      $("a").click(event => {
+        event.preventDefault();
+        let x = ($(this).attr("href").split('/'));
+        let clicked = (x[x.length -1]);
+        this.wikiApiCall.getByPageId(clicked).subscribe(response => {
+          $('#output').html(response.json().parse.text['*'])
+        })
+      })
     });
   }
 

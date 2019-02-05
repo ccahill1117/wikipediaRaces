@@ -3,3 +3,8 @@ iframe {
   height: 800px;
   zoom: 75%;
 }
+
+#output {
+  pointer-events: auto;
+  cursor: default;
+}

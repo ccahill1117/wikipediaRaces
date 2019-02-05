@@ -22,28 +22,72 @@ export class ApiTestCallComponent implements OnInit {
 
   constructor(private wikiApiCall: ApiTestCallService) { }
 
-
-
-  getArticle(query: string) {
+  getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
       let thing = response.json().parse;
       console.log(this.article);
       console.log(thing);
       let content = thing.text['*'];
+      $("#output").empty();
       $("#output").html(thing.text['*']);
-      // let doc =  this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentWindow;
-      // doc.open();
-      // doc.write(content);
-      // doc.close()
+
       $("a").click(function() {
-      alert($(this).attr("href"));
-    })
+        return false;
+      })
+
+
+      $("a").click(function() {
+        let clickedURL = ($(this).attr("href"));
+        let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+        $(".checkDiv").text(clickedLink);
+        alert(clickedLink);
+
+        setTimeout(() => {
+                    console.log('hi');
+                    this.getArticle(clickedLink);
+                }, 1000);
+
+      })
+
+
+
+
     });
   }
 
+  // getArticle2(query) {
+  //   this.wikiApiCall.getByPageId(query).subscribe(response => {
+  //     this.article = response.json();
+  //     let thing = response.json().parse;
+  //     console.log(this.article);
+  //     console.log(thing);
+  //     let content = thing.text['*'];
+  //     $("#output").empty();
+  //     $("#output").html(thing.text['*']);
+  //
+  //     $("a").click(function() {
+  //       return false;
+  //     })
+  //     $("a").click(function() {
+  //       let clickedURL = ($(this).attr("href"));
+  //       let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+  //       $(".checkDiv").text(clickedLink);
+  //       alert(clickedLink);
+  //       this.getArticle(clickedLink);
+  //     })
+  //   })
+  // }
+
+
+  ngOnChanges() {
+}
+
   ngOnInit() {
+
 
   }
 
-}
+
+
+  }

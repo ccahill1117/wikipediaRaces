@@ -92,11 +92,16 @@ export class ApiTestCallComponent implements OnInit {
     this.wikiApiCall.getRandomPage().subscribe(response => {
       console.log(response.json())
       this.game.beginArticle = dot.get(response.json(), 'query.pages.*.title')[0]
+      this.game.beginId = dot.get(response.json(), 'query.pages.*.pageid')[0]
+      console.log(this.game.beginId)
       this.getArticle(this.game.beginArticle);
+
     });
     this.wikiApiCall.getRandomPage().subscribe(response => {
       console.log(response.json())
       this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]
+      this.game.endId = dot.get(response.json(), 'query.pages.*.pageid')[0]
+      console.log(this.game.endId)
     });
     // this.getArticle(this.wikiApiCall.getRandomPage)
     // console.log(this.wikiApiCall.getRandomPage().subscribe(response => {

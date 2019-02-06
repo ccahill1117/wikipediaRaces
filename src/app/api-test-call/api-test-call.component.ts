@@ -6,6 +6,7 @@ import { ApiTestCallService } from '../api-test-call.service';
 import { routing } from '../app.routing';
 import * as $ from 'jquery';
 import * as dot from 'dot-wild';
+import { Game } from '../models/game.model';
 
 
 @Component({
@@ -14,10 +15,11 @@ import * as dot from 'dot-wild';
   styleUrls: ['./api-test-call.component.css'],
   providers: [ApiTestCallService],
   moduleId: module.id,
-
 })
+
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
+  game: Game = new Game();
 
   getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
@@ -89,8 +91,12 @@ export class ApiTestCallComponent implements OnInit {
   ngOnInit() {
     this.wikiApiCall.getRandomPage().subscribe(response => {
       console.log(response.json())
-      const pageId = dot.get(response.json(), 'query.pages.*.title')[0]
-      this.getArticle(pageId);
+      this.game.beginArticle = dot.get(response.json(), 'query.pages.*.title')[0]
+      this.getArticle(this.game.beginArticle);
+    });
+    this.wikiApiCall.getRandomPage().subscribe(response => {
+      console.log(response.json())
+      this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]
     });
     // this.getArticle(this.wikiApiCall.getRandomPage)
     // console.log(this.wikiApiCall.getRandomPage().subscribe(response => {

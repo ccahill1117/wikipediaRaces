@@ -47,8 +47,20 @@ export class ApiTestCallComponent implements OnInit {
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);
         console.log(that.game);
+        that.winCheck(clickedLink);
       })
     });
+  }
+
+  winCheck(clickedPage) {
+    if (clickedPage != this.game.endArticle) {
+      $("#gameStatus").empty();
+      $("#gameStatus").text("you have not won yet!");
+    }
+    else if (clickedPage == this.game.endArticle) {
+      $("#gameStatus").empty();
+      $("#gameStatus").text("YOU WON!");
+    }
   }
 
   constructor(private wikiApiCall: ApiTestCallService, private http: Http) {}

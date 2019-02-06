@@ -19,7 +19,6 @@ import { Game } from '../models/game.model'
 })
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
-  article2: any;
 
   game: Game = new Game();
 
@@ -31,6 +30,11 @@ export class ApiTestCallComponent implements OnInit {
       this.article = response.json();
       $("#inputThing").val('');
       let thing = response.json().parse;
+      console.log('clickedthing',thing)
+      console.log(this.game);
+      this.winCheck(thing.pageid)
+      this.game.articleHistoryTitles.push(thing.displaytitle);
+      this.game.articleHistoryIDs.push(thing.pageid)
       let content = thing.text['*'];
       $("#output").empty();
       $("#output").html(thing.text['*']);
@@ -42,24 +46,25 @@ export class ApiTestCallComponent implements OnInit {
         event.preventDefault();
         let clickedURL = ($(this).attr("href"));
         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-        that.game.articleHistory.push(clickedLink);
         $(".checkDiv").text(clickedLink);
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);
-        console.log(that.game);
-        that.winCheck(clickedLink);
       })
     });
   }
 
-  winCheck(clickedPage) {
-    if (clickedPage != this.game.endArticle) {
+  winCheck(pageId) {
+    if (pageId != this.game.endId) {
       $("#gameStatus").empty();
       $("#gameStatus").text("you have not won yet!");
+      let statement: string = 'not yet';
+      console.log(statement)
     }
-    else if (clickedPage == this.game.endArticle) {
+    else if (pageId == this.game.endId) {
       $("#gameStatus").empty();
       $("#gameStatus").text("YOU WON!");
+      let statement: string = ' you won '
+      console.log(statement)
     }
   }
 

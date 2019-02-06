@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Game } from '../models/game.model';
+import * as firebase from "firebase";
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-welcome',
@@ -26,6 +28,7 @@ export class WelcomeComponent {
 
   login() {
     this.authService.login();
+
   }
 
   logout() {

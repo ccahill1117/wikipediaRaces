@@ -1,5 +1,11 @@
-<form class="" action="index.html" method="post">
+<!-- <form class="" action="index.html" method="post">
   <label for="">enter user name</label>
   <input #username>
   <button routerLink="api">Enter</button>
-</form>
+</form> -->
+<div *ngIf="!isLoggedIn" class="">
+  <h2>You need to log in to play the game</h2>
+</div>
+<div *ngIf="isLoggedIn">
+    <button routerLink="api">Start</button>
+</div>

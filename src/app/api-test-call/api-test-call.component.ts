@@ -107,7 +107,6 @@ export class ApiTestCallComponent implements OnInit {
       this.game.beginId = dot.get(response.json(), 'query.pages.*.pageid')[0]
       this.getArticle(this.game.beginArticle);
 
-
     });
     this.wikiApiCall.getRandomPage().subscribe(response => {
       this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]

@@ -4,8 +4,8 @@ iframe {
   zoom: 75%;
 }
 
-#output {
-
+.hiddenInput {
+display: none;
 }
 
 #inputThing {

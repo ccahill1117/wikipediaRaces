@@ -19,6 +19,7 @@ import { Game } from '../models/game.model'
 })
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
+  article2: any;
 
   game: Game = new Game();
 
@@ -28,11 +29,6 @@ export class ApiTestCallComponent implements OnInit {
   startGame(beginArticle,beginId,endArticle,endId) {
     this.wikiApiCall.getByPageId(beginArticle).subscribe(response => {
       this.article = response.json();
-      this.game.beginArticle = beginArticle;
-      this.game.beginId = beginId;
-      this.game.endArticle = endArticle;
-      this.game.endId = endId;
-      console.log(this.game);
       $("#inputThing").val('');
       let thing = response.json().parse;
       let content = thing.text['*'];
@@ -56,7 +52,6 @@ export class ApiTestCallComponent implements OnInit {
   getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
-      console.log('the game after clicking start', this.game)
       $("#inputThing").val('');
       let thing = response.json().parse;
       let content = thing.text['*'];
@@ -73,34 +68,39 @@ export class ApiTestCallComponent implements OnInit {
         $(".checkDiv").text(clickedLink);
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);
+        console.log(that.game);
       })
     });
   }
 
-  constructor(private wikiApiCall: ApiTestCallService, private http: Http) {
-
-  }
+  constructor(private wikiApiCall: ApiTestCallService, private http: Http) {}
 
     ngOnInit() {
+      let that = this;
       $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
         const thingTitle = dot.get(response, 'query.pages.*.title')
         const thingId = dot.get(response, 'query.pages.*.pageid')
         let start_thing_title = thingTitle[0];
         let start_thing_id = thingId[0];
+        that.game.beginArticle = start_thing_title;
+        that.game.beginId = start_thing_id;
         console.log('start article', start_thing_title, start_thing_id)
-        this.start = start_thing_id;
+
         $("#beginArticle").val(start_thing_title);
-        $("#beginId").val(start_thing_id);
+        // $("#beginId").val(start_thing_id);
 
         $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
           const end_thingTitle = dot.get(response, 'query.pages.*.title')
           const end_thingId = dot.get(response, 'query.pages.*.pageid')
           let end_thing_title = end_thingTitle[0];
           let end_thing_id = end_thingId[0];
-          console.log('end article', end_thing_title, end_thing_id)
-          this.end = end_thing_id;
-          $("#endArticle").val(end_thing_title);
-          $("#endId").val(end_thing_id);
+          that.game.endArticle = end_thing_title;
+          that.game.endId = end_thing_id;
+
+          // $("#endArticle").val(end_thing_title);
+          // $("#endId").val(end_thing_id);
+            console.log(that.game)
+
         })
       })
     }

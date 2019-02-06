@@ -5,13 +5,9 @@
   <form>
     <div class="form-group">
       <label>page ID</label>
-      <input #beginArticle id="beginArticle">
-      <input #beginId id="beginId">
-      <input #endArticle id="endArticle">
-      <input #endId id="endId">
-
+      <input #beginArticle id="beginArticle" class="hiddenInput">
     </div>
-    <button (click)="startGame(beginArticle.value,beginId.value,endArticle.value,endId.value)">Start Game</button>
+    <button (click)="startGame(beginArticle.value)">Start Game</button>
   </form>
 </div>
 <div class="">

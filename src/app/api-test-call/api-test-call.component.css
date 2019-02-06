@@ -2,9 +2,13 @@ iframe {
   width: 800px;
   height: 800px;
   zoom: 75%;
+
 }
 
 #output {
   /* pointer-events: none; */
 
+}
+.iframe{
+  float: right;
 }

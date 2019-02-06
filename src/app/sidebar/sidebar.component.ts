@@ -14,7 +14,7 @@ export class SidebarComponent {
 
 
   constructor() {
-    this.games.push( new Game("ryan",0,[]));
+    this.games.push( new Game());
 
   }
 

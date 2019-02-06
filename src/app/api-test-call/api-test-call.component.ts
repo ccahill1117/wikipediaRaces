@@ -7,7 +7,6 @@ import { routing } from '../app.routing';
 import * as $ from 'jquery';
 import * as dot from 'dot-wild';
 import { Game } from '../models/game.model';
-// import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
 import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser'
 
 
@@ -30,27 +29,47 @@ export class ApiTestCallComponent implements OnInit {
 
   getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
-      this.article = response.json();
-      $("#inputThing").val('');
-      let thing = response.json().parse;
-      let content = thing.text['*'];
-      $("#output").empty();
-      $("#output").html(thing.text['*']);
-      $("a").click(function() {
-        return false;
-      })
-      let that = this;
-      $("a").click(function(event) {
-        event.preventDefault();
-        let clickedURL = ($(this).attr("href"));
-        let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-        $(".checkDiv").text(clickedLink);
-        $("#inputThing").val(clickedLink);
-        that.getArticle(clickedLink);
-      })
+        this.article = response.json();
+        $("#inputThing").val('');
+        let thing = response.json().parse;
+        console.log('clickedthing',thing)
+        console.log(this.game);
+        this.winCheck(thing.pageid)
+        this.game.articleHistoryTitles.push(thing.displaytitle);
+        this.game.articleHistoryIDs.push(thing.pageid)
+        let content = thing.text['*'];
+        $("#output").empty();
+        $("#output").html(thing.text['*']);
+        $("a").click(function() {
+          return false;
+        })
+        let that = this;
+        $("a").click(function(event) {
+          event.preventDefault();
+          let clickedURL = ($(this).attr("href"));
+          let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+          $(".checkDiv").text(clickedLink);
+          $("#inputThing").val(clickedLink);
+          that.getArticle(clickedLink);
+        })
+      });
+    }
 
-    });
+    winCheck(pageId) {
+  if (pageId != this.game.endId) {
+    $("#gameStatus").empty();
+    $("#gameStatus").text("you have not won yet!");
+    let statement: string = 'not yet';
+    console.log(statement)
   }
+  else if (pageId == this.game.endId) {
+    $("#gameStatus").empty();
+    $("#gameStatus").text("YOU WON!");
+    let statement: string = ' you won '
+    console.log(statement)
+  }
+}
+
   constructor(private wikiApiCall: ApiTestCallService, private http: Http,private domSanitizer: DomSanitizer) {
   //   this.html = sanitizer.bypassSecurityTrustHtml('<iframe src="https://en.wikipedia.org/?curid='+this.game.endId+'" width="" height=""></iframe>')
 

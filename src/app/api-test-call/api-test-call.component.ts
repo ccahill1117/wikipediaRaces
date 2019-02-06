@@ -26,29 +26,6 @@ export class ApiTestCallComponent implements OnInit {
   start: string = "";
   end: string = "";
 
-  startGame(beginArticle,beginId,endArticle,endId) {
-    this.wikiApiCall.getByPageId(beginArticle).subscribe(response => {
-      this.article = response.json();
-      $("#inputThing").val('');
-      let thing = response.json().parse;
-      let content = thing.text['*'];
-      $("#output").empty();
-      $("#output").html(thing.text['*']);
-      $("a").click(function() {
-        return false;
-      })
-      let that = this;
-      $("a").click(function(event) {
-        event.preventDefault();
-        let clickedURL = ($(this).attr("href"));
-        let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-        $(".checkDiv").text(clickedLink);
-        $("#inputThing").val(clickedLink);
-        that.getArticle(clickedLink);
-      })
-    });
-  }
-
   getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
       this.article = response.json();
@@ -87,7 +64,7 @@ export class ApiTestCallComponent implements OnInit {
         console.log('start article', start_thing_title, start_thing_id)
 
         $("#beginArticle").val(start_thing_title);
-        // $("#beginId").val(start_thing_id);
+
 
         $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
           const end_thingTitle = dot.get(response, 'query.pages.*.title')
@@ -97,8 +74,6 @@ export class ApiTestCallComponent implements OnInit {
           that.game.endArticle = end_thing_title;
           that.game.endId = end_thing_id;
 
-          // $("#endArticle").val(end_thing_title);
-          // $("#endId").val(end_thing_id);
             console.log(that.game)
 
         })

@@ -66,28 +66,29 @@ export class ApiTestCallComponent implements OnInit {
   constructor(private wikiApiCall: ApiTestCallService, private http: Http) {}
 
     ngOnInit() {
-      let that = this;
-      $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
+
+
+      $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then((response) => {
         const thingTitle = dot.get(response, 'query.pages.*.title')
         const thingId = dot.get(response, 'query.pages.*.pageid')
         let start_thing_title = thingTitle[0];
         let start_thing_id = thingId[0];
-        that.game.beginArticle = start_thing_title;
-        that.game.beginId = start_thing_id;
+        this.game.beginArticle = start_thing_title;
+        this.game.beginId = start_thing_id;
         console.log('start article', start_thing_title, start_thing_id)
 
         $("#beginArticle").val(start_thing_title);
 
 
-        $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then(function(response) {
+        $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then((response) => {
           const end_thingTitle = dot.get(response, 'query.pages.*.title')
           const end_thingId = dot.get(response, 'query.pages.*.pageid')
           let end_thing_title = end_thingTitle[0];
           let end_thing_id = end_thingId[0];
-          that.game.endArticle = end_thing_title;
-          that.game.endId = end_thing_id;
+          this.game.endArticle = end_thing_title;
+          this.game.endId = end_thing_id;
 
-            console.log(that.game)
+            console.log(this.game)
 
         })
       })

@@ -15,15 +15,10 @@ import { Game } from '../models/game.model'
   styleUrls: ['./api-test-call.component.css'],
   providers: [ApiTestCallService],
 
-
 })
 export class ApiTestCallComponent implements OnInit {
   article: any[] = null;
-
   game: Game = new Game();
-
-  start: string = "";
-  end: string = "";
 
   getArticle(query) {
     this.wikiApiCall.getByPageId(query).subscribe(response => {
@@ -71,8 +66,6 @@ export class ApiTestCallComponent implements OnInit {
   constructor(private wikiApiCall: ApiTestCallService, private http: Http) {}
 
     ngOnInit() {
-
-
       $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then((response) => {
         const thingTitle = dot.get(response, 'query.pages.*.title')
         const thingId = dot.get(response, 'query.pages.*.pageid')
@@ -81,10 +74,7 @@ export class ApiTestCallComponent implements OnInit {
         this.game.beginArticle = start_thing_title;
         this.game.beginId = start_thing_id;
         console.log('start article', start_thing_title, start_thing_id)
-
         $("#beginArticle").val(start_thing_title);
-
-
         $.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&origin=*&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1`).then((response) => {
           const end_thingTitle = dot.get(response, 'query.pages.*.title')
           const end_thingId = dot.get(response, 'query.pages.*.pageid')
@@ -92,11 +82,8 @@ export class ApiTestCallComponent implements OnInit {
           let end_thing_id = end_thingId[0];
           this.game.endArticle = end_thing_title;
           this.game.endId = end_thing_id;
-
-            console.log(this.game)
-
+          console.log(this.game)
         })
       })
     }
-
 }

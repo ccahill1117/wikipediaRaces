@@ -17,7 +17,7 @@ import { GameService } from '../game.service';
   selector: 'app-api-test-call',
   templateUrl: './api-test-call.component.html',
   styleUrls: ['./api-test-call.component.css'],
-  providers: [ApiTestCallService,AuthenticationService],
+  providers: [ApiTestCallService,AuthenticationService,GameService],
   moduleId: module.id,
 })
 
@@ -80,6 +80,7 @@ export class ApiTestCallComponent implements OnInit {
     $("#gameStatus").empty();
     $("#gameStatus").text("YOU WON!");
     let statement: string = ' you won '
+    this.gameService.addGame(this.game);
     console.log(statement)
   }
 }

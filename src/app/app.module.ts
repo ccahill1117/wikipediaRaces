@@ -14,6 +14,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { GameService } from './game.service';
 
 
 

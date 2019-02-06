@@ -22,13 +22,14 @@ import { GameService } from '../game.service';
 })
 
 export class ApiTestCallComponent implements OnInit {
-  games: FirebaseListObservable<any[]>;
+games: FirebaseListObservable<any[]>;
   user;
   private isLoggedIn: Boolean;
   private userName: String;
   iframeUrl: SafeResourceUrl;
   dateNow: Date = new Date();
   game: Game = new Game(this.dateNow);
+  key: string;
 
 
 
@@ -47,10 +48,14 @@ export class ApiTestCallComponent implements OnInit {
         console.log(this.game);
                 console.log('ALL USER DATA',this.user);
                 console.log('user displayName',this.user.displayName);
-        this.game.username = this.user.displayName;
+                console.log('')
+        this.game.email = this.user.email;
         this.winCheck(thing.pageid)
         this.game.articleHistoryTitles.push(thing.displaytitle);
         this.game.articleHistoryIDs.push(thing.pageid)
+        this.game.score = this.game.score - 1;
+        this.gameService.updateGame(this.key,this.game);
+
         let content = thing.text['*'];
         $("#output").empty();
         $("#output").html(thing.text['*']);
@@ -69,6 +74,47 @@ export class ApiTestCallComponent implements OnInit {
       });
     }
 
+    StartArticle(query) {
+      this.wikiApiCall.getByPageId(query).subscribe(response => {
+          this.article = response.json();
+          $("#inputThing").val('');
+          let thing = response.json().parse;
+          console.log('clickedthing',thing)
+          console.log(this.game);
+                  console.log('ALL USER DATA',this.user);
+                  console.log('user displayName',this.user.displayName);
+                  console.log('')
+          this.game.email = this.user.email;
+          this.winCheck(thing.pageid)
+          this.game.articleHistoryTitles.push(thing.displaytitle);
+          this.game.articleHistoryIDs.push(thing.pageid)
+
+          this.key = this.gameService.addGame(this.game);
+          console.log(this.key);
+
+                    // this.gameService.games.forEach(function(x) {
+                    //   x.forEach(function(y) {
+                    //     console.log(y.$key);
+                    //   })
+                    // })
+          let content = thing.text['*'];
+          $("#output").empty();
+          $("#output").html(thing.text['*']);
+          $("a").click(function() {
+            return false;
+          })
+          let that = this;
+          $("a").click(function(event) {
+            event.preventDefault();
+            let clickedURL = ($(this).attr("href"));
+            let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+            $(".checkDiv").text(clickedLink);
+            $("#inputThing").val(clickedLink);
+            that.getArticle(clickedLink);
+          })
+        });
+      }
+
     winCheck(pageId) {
   if (pageId != this.game.endId) {
     $("#gameStatus").empty();
@@ -80,7 +126,6 @@ export class ApiTestCallComponent implements OnInit {
     $("#gameStatus").empty();
     $("#gameStatus").text("YOU WON!");
     let statement: string = ' you won '
-    this.gameService.addGame(this.game);
     console.log(statement)
   }
 }
@@ -94,9 +139,6 @@ export class ApiTestCallComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
-  //   this.html = sanitizer.bypassSecurityTrustHtml('<iframe src="https://en.wikipedia.org/?curid='+this.game.endId+'" width="" height=""></iframe>')
-
-
 
   }
 
@@ -112,13 +154,13 @@ export class ApiTestCallComponent implements OnInit {
     this.wikiApiCall.getRandomPage().subscribe(response => {
       this.game.beginArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.beginId = dot.get(response.json(), 'query.pages.*.pageid')[0]
-      this.getArticle(this.game.beginArticle);
+      this.StartArticle(this.game.beginArticle);
 
     });
     this.wikiApiCall.getRandomPage().subscribe(response => {
       this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.endId = dot.get(response.json(), 'query.pages.*.pageid')[0]
-      console.log(this.game.endId)
+
     });
 
 

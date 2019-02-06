@@ -11,6 +11,7 @@ import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-br
 import { AuthenticationService } from '../authentication.service';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from "firebase";
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-api-test-call',
@@ -21,11 +22,16 @@ import * as firebase from "firebase";
 })
 
 export class ApiTestCallComponent implements OnInit {
+  games: FirebaseListObservable<any[]>;
   user;
   private isLoggedIn: Boolean;
   private userName: String;
   iframeUrl: SafeResourceUrl;
-  game: Game = new Game();
+  dateNow: Date = new Date();
+  game: Game = new Game(this.dateNow);
+
+
+
   safeUrl(){
     return this.domSanitizer.bypassSecurityTrustResourceUrl(
     'https://en.wikipedia.org/?curid=' +this.game.endId);
@@ -78,7 +84,7 @@ export class ApiTestCallComponent implements OnInit {
   }
 }
 
-  constructor(private wikiApiCall: ApiTestCallService, private http: Http,private domSanitizer: DomSanitizer,public authService: AuthenticationService) {
+  constructor(private wikiApiCall: ApiTestCallService, private http: Http,private domSanitizer: DomSanitizer,public authService: AuthenticationService, private gameService: GameService) {
     this.authService.user.subscribe(user => {
       if (user == null) {
         this.isLoggedIn = false;

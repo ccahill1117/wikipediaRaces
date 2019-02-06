@@ -3,6 +3,7 @@
 export class Game {
 
   constructor(
+    public timeStamp: any,
     public username: string = '',
     public score: number = null,
     public beginArticle: string = '',

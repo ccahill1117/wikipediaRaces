@@ -7,6 +7,8 @@ import { routing } from '../app.routing';
 import * as $ from 'jquery';
 import * as dot from 'dot-wild';
 import { Game } from '../models/game.model';
+// import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser'
 
 
 @Component({
@@ -18,6 +20,11 @@ import { Game } from '../models/game.model';
 })
 
 export class ApiTestCallComponent implements OnInit {
+  iframeUrl: SafeResourceUrl;
+  safeUrl(){
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(
+    'https://en.wikipedia.org/?curid=' +this.game.endId);
+  }
   article: any[] = null;
   game: Game = new Game();
 
@@ -41,45 +48,12 @@ export class ApiTestCallComponent implements OnInit {
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);
       })
-      // $("a").dblclick(function() {
-      //   let clickedURL = ($(this).attr("title"));
-      //   let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-      //   return false;
-      // })
 
     });
   }
-  constructor(private wikiApiCall: ApiTestCallService, private http: Http) {
-    // $.get(`https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&list=random&rnlimit=1`).then(function(response) {
-    //   console.log('initial random', response);
-    //   let content = response.query.random[0].id;
-    //   $("#output").empty();
-    //   $("#output").text(response.query.random[0].id + ' ' + response.query.random[0].title);
-    //
-    //     $.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${content}&format=json`).then(function(response2) {
-    //       let thing = response2.parse;
-    //       console.log('get article', thing);
-    //       $("#output").html(thing.text['*']);
-    //       $("a").click(function(event) {
-    //         return false
-    //       })
-    //       let that = this;
-    //       $("a").click(function() {
-    //         event.preventDefault();
-    //
-    //         let clickedURL = ($(this).attr("title"));
-    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-    //         $(".checkDiv").text(clickedLink);
-    //
-    //       })
-    //       $("a").dblclick(function() {
-    //         let clickedURL = ($(this).attr("title"));
-    //         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
-    //         $("#inputThing").val(clickedLink);
-    //         return false;
-    //       })
-    //     })
-    // })
+  constructor(private wikiApiCall: ApiTestCallService, private http: Http,private domSanitizer: DomSanitizer) {
+  //   this.html = sanitizer.bypassSecurityTrustHtml('<iframe src="https://en.wikipedia.org/?curid='+this.game.endId+'" width="" height=""></iframe>')
+
 
 
   }
@@ -90,26 +64,20 @@ export class ApiTestCallComponent implements OnInit {
 
   ngOnInit() {
     this.wikiApiCall.getRandomPage().subscribe(response => {
-      console.log(response.json())
       this.game.beginArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.beginId = dot.get(response.json(), 'query.pages.*.pageid')[0]
-      console.log(this.game.beginId)
       this.getArticle(this.game.beginArticle);
 
     });
     this.wikiApiCall.getRandomPage().subscribe(response => {
-      console.log(response.json())
       this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.endId = dot.get(response.json(), 'query.pages.*.pageid')[0]
       console.log(this.game.endId)
     });
-    // this.getArticle(this.wikiApiCall.getRandomPage)
-    // console.log(this.wikiApiCall.getRandomPage().subscribe(response => {
-    //   return response.query.random[0].id
-    // }))
-
-  }
-
 
 
   }
+
+
+
+}

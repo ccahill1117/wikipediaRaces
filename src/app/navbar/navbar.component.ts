@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
+import { User } from '../models/user.model';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +10,7 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./navbar.component.css'],
   providers: [AuthenticationService]
 })
+
 export class NavbarComponent {
   user;
   private isLoggedIn: Boolean;
@@ -23,11 +27,17 @@ export class NavbarComponent {
     });
   }
 
+  ngOnInit() {
+
+  }
+
   login() {
     this.authService.login();
+
   }
 
   logout() {
     this.authService.logout();
+
   }
 }

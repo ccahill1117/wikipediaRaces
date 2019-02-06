@@ -1,27 +1,19 @@
-<h3>Trying out wikipedia api call....</h3>
-<div class="">
+<div class="row">
+  <div class="col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-md-10">
+    <div class="content">
+      <div id="output">
 
-  <form>
-    <div class="form-group">
-      <label>page ID</label>
-      <input #pageId id="inputThing">
+      </div>
+      <!-- <form>
+        <div class="form-group">
+          <label>page ID</label>
+          <input #pageId id="inputThing">
+        </div>
+        <button (click)="getArticle(pageId.value)">Get Article</button>
+      </form> -->
     </div>
-    <button (click)="getArticle(pageId.value)">Get Article</button>
-  </form>
-</div>
-<div class="">
-  <!-- <iframe src="" #iframe></iframe> -->
-
-</div>
-
-<div class="checkDiv">
-
-</div>
-
-<div id="output">
-
-</div>
-
-<div *ngFor="let divs of " class="">
-
+  </div>
 </div>

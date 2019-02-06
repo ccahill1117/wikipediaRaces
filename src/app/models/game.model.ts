@@ -1,11 +1,8 @@
+
+
 export class Game {
-  pages: string[] = [];
-  username: string = "";
-  timestamp: string = "";
 
-
-
-  constructor(public params) {
+  constructor( public username: string, public score: number, public history: string[] = []) {
 
   }
 }

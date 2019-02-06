@@ -4,14 +4,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ApiTestCallComponent } from './api-test-call/api-test-call.component';
 import { routing } from './app.routing';
-import { WikiComponent } from './wiki/wiki.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import * as $ from 'jquery';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 export const firebaseConfig = {
@@ -26,7 +28,9 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     ApiTestCallComponent,
-    WikiComponent
+    WelcomeComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

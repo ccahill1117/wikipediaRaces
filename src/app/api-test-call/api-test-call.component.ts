@@ -42,6 +42,7 @@ export class ApiTestCallComponent implements OnInit {
         event.preventDefault();
         let clickedURL = ($(this).attr("href"));
         let clickedLink = clickedURL.substr(clickedURL.lastIndexOf('/') + 1);
+        that.game.articleHistory.push(clickedLink);
         $(".checkDiv").text(clickedLink);
         $("#inputThing").val(clickedLink);
         that.getArticle(clickedLink);

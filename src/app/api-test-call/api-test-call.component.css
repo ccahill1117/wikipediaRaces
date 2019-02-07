@@ -30,17 +30,10 @@ li {
 }
 
 #output2 {
-
   max-width: 500px;
 }
 
-.box1 th {
-  color: blue;
-}
 
-.box1 a {
-
-}
 
 .box2 {
   padding-right: 20px;
@@ -54,14 +47,18 @@ li {
   color: #fff;
   border-radius: 5px;
   overflow: auto;
-  height: 800px;
   padding: 20px;
+  pointer-events: none;
 
 }
 
-
+.targetTitle {
+  position: fixed;
+}
 
 #endArticleFollow {
+  height: 800px;
+  overflow: auto;
   position: fixed;
 
 }

@@ -78,6 +78,7 @@ export class ApiTestCallComponent implements OnInit {
     StartArticle(query) {
       this.wikiApiCall.getByPageId(query).subscribe(response => {
           this.article = response.json();
+          console.log(this.article);
           $("#inputThing").val('');
           let thing = response.json().parse;
           this.game.email = this.user.email;
@@ -148,6 +149,9 @@ export class ApiTestCallComponent implements OnInit {
 
 
   ngOnChanges() {
+    // $("a#output2").click(function(e) {
+    //   e.preventDefault();
+    // })
   }
 
   ngDoCheck() {

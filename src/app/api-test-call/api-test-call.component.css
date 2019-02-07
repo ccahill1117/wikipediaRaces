@@ -15,16 +15,15 @@
   padding: 20px;
 }
 
+.historyBox {
+
+}
 
 li {
   font-size: 1.2em;
 }
 
 #historyFloat {
-  position: fixed;
-}
-
-#box1follow {
   position: fixed;
 }
 
@@ -46,10 +45,6 @@ li {
   max-width: 800px;
 }
 
-.historyBox {
-
-
-}
 
 #output2 {
   background-color: #444;

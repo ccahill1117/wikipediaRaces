@@ -55,7 +55,6 @@ export class ApiTestCallComponent implements OnInit {
         this.game.articleHistoryIDs.push(thing.pageid)
         this.game.score = this.game.score - 1;
         this.gameService.updateGame(this.key,this.game);
-
         let content = thing.text['*'];
         $("#output").empty();
         $("#output").html(thing.text['*']);
@@ -70,6 +69,8 @@ export class ApiTestCallComponent implements OnInit {
           $(".checkDiv").text(clickedLink);
           $("#inputThing").val(clickedLink);
           that.getArticle(clickedLink);
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+          return false;
         })
       });
     }
@@ -106,11 +107,6 @@ export class ApiTestCallComponent implements OnInit {
         this.wikiApiCall.getByPageId(query).subscribe(response => {
             this.article = response.json();
             let thing = response.json().parse;
-            this.game.email = this.user.email;
-            this.winCheck(thing.pageid)
-            this.game.articleHistoryTitles.push(thing.displaytitle);
-            this.game.articleHistoryIDs.push(thing.pageid)
-            this.key = this.gameService.addGame(this.game);
             let content = thing.text['*'];
             $("#output2").empty();
             $("#output2").html(thing.text['*']);

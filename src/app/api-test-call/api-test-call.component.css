@@ -1,16 +1,8 @@
-iframe {
-  /* width: 800px;
-  height: 800px;
-  zoom: 75%; */
-
-}
-
-
 .wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1.25fr 0.75fr;
-  padding: 20px;
+  grid-template-columns: 1fr 0.3fr 0.7fr;
+  padding: 50px;
 }
 .box1 {
   background-color: #878480;
@@ -19,14 +11,36 @@ iframe {
   padding: 20px;
 }
 
+li {
+  font-size: 1.2em;
+}
+
+#historyFloat {
+  position: fixed;
+}
+
+#box1follow {
+  position: fixed;
+}
+
+#output a {
+  color: red;
+}
+
 .box1 th {
   color: blue;
 }
 
 .box1 a {
-  background-color: red;
+
 }
-#output2follow {
+
+.box2 {
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.historyBox {
 
 }
 
@@ -34,12 +48,13 @@ iframe {
   background-color: #444;
   color: #fff;
   border-radius: 5px;
+  overflow: auto;
+  height: 800px;
+  padding: 20px;
+
 }
 
 #endArticleFollow {
-
-  height: 800px;
-  overflow: auto;
   position: fixed;
 
 }

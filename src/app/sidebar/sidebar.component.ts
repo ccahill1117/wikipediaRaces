@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/game.model';
-import { ApiTestCallComponent } from '../api-test-call/api-test-call.component';
+import { GameService } from '../game.service';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  providers: [GameService]
 })
-export class SidebarComponent {
-  games:Game[]= [
+export class SidebarComponent implements OnInit{
 
-  ]
-
-
-  constructor() {
-    this.games.push( new Game());
+  constructor(private gameService: GameService) {
 
   }
-
+  getGame() {
+    // this.game = this.gameService.currentGame.subscribe()
+  }
   ngOnInit() {
+
   }
 
 }

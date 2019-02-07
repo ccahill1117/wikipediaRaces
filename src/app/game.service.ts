@@ -1,22 +1,45 @@
 import { Injectable } from '@angular/core';
-import { ApiTestCallComponent } from './api-test-call/api-test-call.component';
 import { Game } from './models/game.model';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { masterFirebaseConfig } from './api-keys';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable()
 export class GameService {
   games: FirebaseListObservable<any[]>;
 
   constructor(private database: AngularFireDatabase) {
-      this.games = database.list('games');
-   }
-   getHistory() {
-     return this.games
-   }
+    this.games = database.list('games');
+
+  }
+
+  getGames() {
+  return this.games;
+  }
+
+  getGameById(key){
+    return this.database.object(key);
+  }
+
+  updateGame(key,localgame) {
+  return this.database.object('/games/'+key).update({
+    articleHistoryTitles: localgame.articleHistoryTitles,
+    articleHistoryIDs: localgame.articleHistoryIDs,
+    score: localgame.score,
+                                 });
+
+  }
+
+  winGame(key,localgame) {
+    return this.database.object('/games/'+key).update({
+      gameStatus: localgame.gameStatus,
+                                   });
+  }
+
+
+  addGame(newGame) {
+    return this.games.push(newGame).key;
+  }
+
 }

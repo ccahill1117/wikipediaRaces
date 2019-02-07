@@ -1,0 +1,12 @@
+{ "games": [{
+    "timeStamp": "",
+    "username":"me",
+    "score": 12,
+    "beginArticle": "thing",
+    "endArticle":  "other",
+    "beginId": 123,
+    "endId": 321,
+    "articleHistoryTitles": ["hi"],
+    "articleHistoryIDs": ["string"]
+  }]
+}

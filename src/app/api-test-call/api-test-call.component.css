@@ -1,25 +1,64 @@
-iframe {
-  width: 800px;
-  height: 400px;
-  zoom: 75%;
+.navPane {
+  max-width: 1000px;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 0.3fr 0.7fr;
+  padding: 50px;
+}
+.box1 {
+  background-color: #878480;
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.historyBox {
 
 }
 
-#output {
-  /* pointer-events: none; */
+li {
+  font-size: 1.2em;
+}
 
+#historyFloat {
+  position: fixed;
+  max-width: 300px;
+  padding: 30px;
 }
-.iframe{
-  float: right;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  background-color: #3062cf;
-  clickedLink:none;
+
+#output2 {
+  max-width: 500px;
 }
-a:link {
+
+
+
+.box2 {
+  padding-right: 20px;
+  margin-right: 20px;
+  max-width: 800px;
+}
+
+
+#output2 {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  overflow: auto;
+  padding: 20px;
   pointer-events: none;
+
 }
-#title {
-  font-size: 40px;
+
+.targetTitle {
+  position: fixed;
+}
+
+#endArticleFollow {
+  height: 800px;
+  overflow: auto;
+  position: fixed;
+
 }

@@ -2,5 +2,9 @@
   background-color: #3062cf;
   width: 250px;
   height: 1080px;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+
 
 }

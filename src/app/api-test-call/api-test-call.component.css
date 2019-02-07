@@ -1,6 +1,6 @@
 iframe {
   width: 800px;
-  height: 800px;
+  height: 400px;
   zoom: 75%;
 
 }
@@ -11,4 +11,15 @@ iframe {
 }
 .iframe{
   float: right;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: #3062cf;
+  clickedLink:none;
+}
+a:link {
+  pointer-events: none;
+}
+#title {
+  font-size: 40px;
 }

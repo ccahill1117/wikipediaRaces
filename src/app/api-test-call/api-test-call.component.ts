@@ -44,6 +44,7 @@ export class ApiTestCallComponent implements OnInit {
         this.game.username = this.user.displayName;
         this.winCheck(thing.pageid)
         this.game.articleHistoryTitles.push(thing.displaytitle);
+        $("#title").text(thing.displaytitle);
         this.game.articleHistoryIDs.push(thing.pageid)
         let content = thing.text['*'];
         $("#output").empty();

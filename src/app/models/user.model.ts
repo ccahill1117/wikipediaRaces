@@ -1,7 +1,7 @@
 
 export class User {
 
-  constructor(
+  constructor(public userName:string,public score:number
 
 
 

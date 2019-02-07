@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as $ from 'jquery';
+import { Game } from './models/game.model';
 
 @Injectable()
 export class ApiTestCallService {
+
 
   getByPageId(pageId: string) {
     // return this.http.get(`https://en.wikipedia.org/w/api.php?action=parse&origin=*&pageid=${pageId}&format=json`)

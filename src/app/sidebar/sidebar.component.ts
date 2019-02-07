@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/game.model';
+import { ApiTestCallComponent } from '../api-test-call/api-test-call.component';
 
 
 @Component({

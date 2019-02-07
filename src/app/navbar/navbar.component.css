@@ -1,4 +1,7 @@
 .navbar-brand, .navbar-right{
-  color:blue;
+  color:white;
   font-size: 40px;
+}
+.container-fluid {
+  background-color: black;
 }

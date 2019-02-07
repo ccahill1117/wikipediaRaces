@@ -5,6 +5,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { WinComponent } from './win/win.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: '',
     component: WelcomeComponent
   },
+  {
+    path:'win',
+    component: WinComponent
+  }
 
 
 

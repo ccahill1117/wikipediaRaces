@@ -81,7 +81,6 @@ export class ApiTestCallComponent implements OnInit {
           $("#inputThing").val('');
           let thing = response.json().parse;
           this.game.email = this.user.email;
-          this.winCheck(thing.pageid)
           this.game.articleHistoryTitles.push(thing.displaytitle);
           this.game.articleHistoryIDs.push(thing.pageid)
           this.key = this.gameService.addGame(this.game);
@@ -121,19 +120,20 @@ export class ApiTestCallComponent implements OnInit {
         }
 
     winCheck(pageId) {
-  if (pageId != this.game.endId) {
-    $("#gameStatus").empty();
-    $("#gameStatus").text("you have not won yet!");
-    let statement: string = 'not yet';
-    console.log(statement)
-  }
-  else if (pageId == this.game.endId) {
-    $("#gameStatus").empty();
-    $("#gameStatus").text("YOU WON!");
-    let statement: string = ' you won '
-    console.log(statement)
-  }
-}
+      if (pageId != this.game.endId) {
+        $("#gameStatus").empty();
+        $("#gameStatus").text("you have not won yet!");
+        let statement: string = 'not yet';
+        console.log(statement)
+      }
+      else if (pageId == this.game.endId) {
+        $("#gameStatus").empty();
+        $("#gameStatus").text("YOU WON!");
+        let statement: string = ' you won '
+        $(location).attr('href','win');
+        console.log(statement)
+      }
+    }
 
   constructor(private wikiApiCall: ApiTestCallService, private http: Http,private domSanitizer: DomSanitizer,public authService: AuthenticationService, private gameService: GameService) {
     this.authService.user.subscribe(user => {

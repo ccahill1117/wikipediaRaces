@@ -1,22 +1,20 @@
 <div class="row">
-    <div class="wrapper content">
-      <div class="">
-
+    <div class="wrapper">
+      <div class="navPane">
         <h2>CURRENT PAGE: </h2>
         <h3>{{game.articleHistoryTitles[game.articleHistoryTitles.length - 1]}}</h3>
-
         <div id="output" class="box1">
         </div>
       </div>
       <div class="historyBox">
-        <div id="historyFloat">
+
           <h2>History</h2>
           <ol>
             <li *ngFor="let article of game.articleHistoryTitles">
               {{article}}
             </li>
           </ol>
-        </div>
+    
       </div>
       <div class="box2">
         <div id="endArticleFollow">

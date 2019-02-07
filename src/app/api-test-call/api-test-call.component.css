@@ -1,3 +1,7 @@
+.navPane {
+  max-width: 1000px;
+}
+
 .wrapper {
   display: grid;
   grid-gap: 10px;
@@ -11,6 +15,7 @@
   padding: 20px;
 }
 
+
 li {
   font-size: 1.2em;
 }
@@ -23,8 +28,8 @@ li {
   position: fixed;
 }
 
-#output a {
-  color: red;
+#output2 {
+  max-width: 500px;
 }
 
 .box1 th {
@@ -38,9 +43,11 @@ li {
 .box2 {
   padding-right: 20px;
   margin-right: 20px;
+  max-width: 800px;
 }
 
 .historyBox {
+
 
 }
 

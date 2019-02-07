@@ -42,9 +42,4 @@ export class GameService {
     return this.games.push(newGame).key;
   }
 
-  // getCurrentGame() {
-  //   return this.apiComponent.game;
-  // }
-
-
 }

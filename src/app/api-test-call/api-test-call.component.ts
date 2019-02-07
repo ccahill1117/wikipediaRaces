@@ -84,12 +84,6 @@ export class ApiTestCallComponent implements OnInit {
           this.game.articleHistoryTitles.push(thing.displaytitle);
           this.game.articleHistoryIDs.push(thing.pageid)
           this.key = this.gameService.addGame(this.game);
-
-                    // this.gameService.games.forEach(function(x) {
-                    //   x.forEach(function(y) {
-                    //     console.log(y.$key);
-                    //   })
-                    // })
           let content = thing.text['*'];
           $("#output").empty();
           $("#output").html(thing.text['*']);
@@ -107,6 +101,28 @@ export class ApiTestCallComponent implements OnInit {
           })
         });
       }
+
+      EndArticle(query) {
+        this.wikiApiCall.getByPageId(query).subscribe(response => {
+            this.article = response.json();
+            let thing = response.json().parse;
+            this.game.email = this.user.email;
+            this.winCheck(thing.pageid)
+            this.game.articleHistoryTitles.push(thing.displaytitle);
+            this.game.articleHistoryIDs.push(thing.pageid)
+            this.key = this.gameService.addGame(this.game);
+            let content = thing.text['*'];
+            $("#output2").empty();
+            $("#output2").html(thing.text['*']);
+            $("a").click(function() {
+              return false;
+            })
+            let that = this;
+            $("a").click(function(event) {
+              event.preventDefault();
+            })
+          });
+        }
 
     winCheck(pageId) {
   if (pageId != this.game.endId) {
@@ -132,7 +148,6 @@ export class ApiTestCallComponent implements OnInit {
         this.userName = user.displayName;
       }
     });
-
   }
 
 
@@ -148,12 +163,11 @@ export class ApiTestCallComponent implements OnInit {
       this.game.beginArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.beginId = dot.get(response.json(), 'query.pages.*.pageid')[0]
       this.StartArticle(this.game.beginArticle);
-
     });
     this.wikiApiCall.getRandomPage().subscribe(response => {
       this.game.endArticle = dot.get(response.json(), 'query.pages.*.title')[0]
       this.game.endId = dot.get(response.json(), 'query.pages.*.pageid')[0]
-
+      this.EndArticle(this.game.endArticle);
     });
 
 

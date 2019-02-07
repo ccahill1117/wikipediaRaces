@@ -1,19 +1,27 @@
 <div class="row">
-  <div class="col-md-2">
-    <app-sidebar></app-sidebar>
-  </div>
 
-  <div class="col-md-10">
-    <div class="content">
-      <div class="iframe">
-      <h2>Try and find this page in as few clicks as possible</h2>
-    <iframe [src]="safeUrl()" width="" height="" title="endpoint"></iframe>
-  </div>
+    <div class="wrapper content">
+      <div class="">
+        <h2>START PAGE: </h2>
+        <h3>{{game.beginArticle}}</h3>
+        <div id="output" class="box1">
+        </div>
+      </div>
+      <div class="box2">
+        <div id="endArticleFollow">
+          <div id="output2follow">
+            <h2>TARGET PAGE:</h2>
+            <h3>{{game.endArticle}}</h3>
+          </div>
+          <div id="output2">
+          </div>
 
-      <div id="output">
-
+        </div>
       </div>
     </div>
-  </div>
 
 </div>
+
+
+
+<!-- <iframe [src]="safeUrl()" width="" height="" title="endpoint"></iframe> -->

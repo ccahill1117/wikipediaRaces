@@ -1,14 +1,45 @@
 iframe {
-  width: 800px;
+  /* width: 800px;
   height: 800px;
-  zoom: 75%;
+  zoom: 75%; */
 
 }
 
-#output {
-  /* pointer-events: none; */
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1.25fr 0.75fr;
+  padding: 20px;
+}
+.box1 {
+  background-color: #878480;
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.box1 th {
+  color: blue;
+}
+
+.box1 a {
+  background-color: red;
+}
+#output2follow {
 
 }
-.iframe{
-  float: right;
+
+#output2 {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+}
+
+#endArticleFollow {
+
+  height: 800px;
+  overflow: auto;
+  position: fixed;
+
 }

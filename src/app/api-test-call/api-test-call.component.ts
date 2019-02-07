@@ -22,12 +22,12 @@ import { GameService } from '../game.service';
 })
 
 export class ApiTestCallComponent implements OnInit {
-games: FirebaseListObservable<any[]>;
+  games: FirebaseListObservable<any[]>;
   user;
   private isLoggedIn: Boolean;
   private userName: String;
   iframeUrl: SafeResourceUrl;
-  dateNow: Date = new Date();
+  dateNow: string = new Date().toString();
   game: Game = new Game(this.dateNow);
   key: string;
 
@@ -79,18 +79,11 @@ games: FirebaseListObservable<any[]>;
           this.article = response.json();
           $("#inputThing").val('');
           let thing = response.json().parse;
-          console.log('clickedthing',thing)
-          console.log(this.game);
-                  console.log('ALL USER DATA',this.user);
-                  console.log('user displayName',this.user.displayName);
-                  console.log('')
           this.game.email = this.user.email;
           this.winCheck(thing.pageid)
           this.game.articleHistoryTitles.push(thing.displaytitle);
           this.game.articleHistoryIDs.push(thing.pageid)
-
           this.key = this.gameService.addGame(this.game);
-          console.log(this.key);
 
                     // this.gameService.games.forEach(function(x) {
                     //   x.forEach(function(y) {

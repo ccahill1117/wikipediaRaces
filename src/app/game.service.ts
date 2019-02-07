@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Game } from './models/game.model';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable()
 export class GameService {
@@ -8,6 +11,7 @@ export class GameService {
 
   constructor(private database: AngularFireDatabase) {
     this.games = database.list('games');
+
   }
 
   getGames() {
@@ -33,9 +37,14 @@ export class GameService {
                                    });
   }
 
+
   addGame(newGame) {
     return this.games.push(newGame).key;
   }
 
+  // getCurrentGame() {
+  //   return this.apiComponent.game;
+  // }
 
- }
+
+}

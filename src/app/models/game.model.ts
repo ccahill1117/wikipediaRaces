@@ -3,7 +3,7 @@
 export class Game {
 
   constructor(
-    public timeStamp: any,
+    public timeStamp: string,
     public email: string = '',
     public score: number = 100,
     public beginArticle: string = '',

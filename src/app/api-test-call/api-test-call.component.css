@@ -25,9 +25,12 @@ li {
 
 #historyFloat {
   position: fixed;
+  max-width: 300px;
+  padding: 30px;
 }
 
 #output2 {
+
   max-width: 500px;
 }
 
@@ -55,6 +58,8 @@ li {
   padding: 20px;
 
 }
+
+
 
 #endArticleFollow {
   position: fixed;
